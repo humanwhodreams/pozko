@@ -2,32 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 49 63% 98%;
+    --foreground: 49 59% 4%;
+    --muted: 49 12% 86%;
+    --muted-foreground: 49 2% 40%;
+    --popover: 49 63% 98%;
+    --popover-foreground: 49 59% 4%;
+    --card: 49 63% 97%;
+    --card-foreground: 49 59% 3%;
+    --border: 49 8% 92%;
+    --input: 49 8% 92%;
+    --primary: 49 99% 36%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 49 11% 84%;
+    --secondary-foreground: 49 11% 24%;
+    --accent: 49 11% 84%;
+    --accent-foreground: 49 11% 24%;
+    --destructive: 11 80% 36%;
+    --destructive-foreground: 11 80% 96%;
+    --ring: 49 99% 36%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 49 58% 2%;
+    --foreground: 49 40% 100%;
+    --muted: 49 12% 14%;
+    --muted-foreground: 49 2% 60%;
+    --popover: 49 58% 2%;
+    --popover-foreground: 49 40% 100%;
+    --card: 49 58% 3%;
+    --card-foreground: 0 0% 100%;
+    --border: 49 8% 11%;
+    --input: 49 8% 11%;
+    --primary: 49 99% 36%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 49 7% 10%;
+    --secondary-foreground: 49 7% 70%;
+    --accent: 49 7% 10%;
+    --accent-foreground: 49 7% 70%;
+    --destructive: 11 80% 49%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 49 99% 36%;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1 {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+  }
+  h2 {
+    @apply scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+  }
+  h3 {
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+  }
+  h4 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+  }
+  p {
+    @apply leading-7 [&:not(:first-child)]:mt-6;
+  }
+  blockquote {
+    @apply mt-6 border-l-2 pl-6 italic;
+  }
+  code {
+    @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+  }
+
+  /* others */
+  .lead {
+    @apply text-xl text-muted-foreground;
+  }
+  .large {
+    @apply text-lg font-semibold;
+  }
+  .small {
+    @apply text-sm font-medium leading-none;
+  }
+  .muted {
+    @apply text-sm text-muted-foreground;
   }
 }
