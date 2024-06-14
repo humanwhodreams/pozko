@@ -1,35 +1,24 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Cone, MessageCircleMore, Newspaper, User } from "lucide-react";
 
-const adminStats = [
-  {
-    icon: Newspaper,
-    title: "Posts",
-    count: "12K",
-  },
-  {
-    icon: Cone,
-    title: "Categories",
-    count: "141",
-  },
-  {
-    icon: User,
-    title: "Users",
-    count: "1k",
-  },
-  {
-    icon: MessageCircleMore,
-    title: "Comments",
-    count: "5k",
-  },
-];
+import { DataTable } from "@/components/tables/posts/data-table";
+import type { Post } from "@/types/posts";
+import { PostChart } from "@/components/charts/post-chart";
+import { columns } from "@/components/tables/posts/columns";
+import posts from "@/data/posts";
+import stats from "@/data/stats";
 
-export default function Page() {
+async function getData(): Promise<Post[]> {
+  return posts;
+}
+
+export default async function Page() {
+  const data = await getData();
+
   return (
     <>
       <section>
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {adminStats.map((stat, index) => {
+        <section className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          {stats.map((stat, index) => {
             return (
               <Card key={index}>
                 <CardHeader className="text-muted-foreground">
@@ -46,7 +35,17 @@ export default function Page() {
               </Card>
             );
           })}
-        </div>
+        </section>
+        <section>
+          <div className="pt-10">
+            <PostChart />
+          </div>
+        </section>
+        <section>
+          <div className="py-10">
+            <DataTable columns={columns} data={data} />
+          </div>
+        </section>
       </section>
     </>
   );

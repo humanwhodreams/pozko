@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { LogOut, User } from "lucide-react";
 
+import Link from "next/link";
+
 export default function UserButton() {
   return (
     <>
@@ -27,9 +29,11 @@ export default function UserButton() {
             <span>Profile</span>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <LogOut className="mr-2 h-4 w-4" />
-            <span>Log out</span>
+          <DropdownMenuItem asChild>
+            <Link href={"/"}>
+              <LogOut className="mr-2 h-4 w-4" />
+              <span>Log out</span>
+            </Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -1,4 +1,12 @@
-import { Cone, Gauge, Home, MessageCircleMore, Newspaper, Settings, User } from "lucide-react";
+import {
+  Cone,
+  Gauge,
+  Home,
+  MessageCircleMore,
+  Newspaper,
+  Settings,
+  User,
+} from "lucide-react";
 import {
   SideBarItem,
   SideBarItemIcon,
@@ -50,7 +58,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <SideBarToggle />
         {sidenavitems.map((item, index) => {
           return (
-            <SideBarItem key={index}>
+            <SideBarItem key={index} href={item.href}>
               <SideBarItemIcon>
                 <item.icon className="mr-2 size-4" />
               </SideBarItemIcon>
@@ -59,7 +67,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           );
         })}
       </SideBar>
-      <main className="h-auto p-4 pt-20 md:ml-64 bg-muted/20 md:px-12">{children}</main>
+      <main className="h-auto p-4 pt-20 md:ml-64 bg-muted/20 md:px-12">
+        {children}
+      </main>
     </>
   );
 }

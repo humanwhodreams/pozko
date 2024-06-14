@@ -1,15 +1,22 @@
 import * as React from "react";
 
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 interface SideBarItemProps {
   children: React.ReactNode;
+  href: string;
 }
 
-export function SideBarItem({ children }: SideBarItemProps) {
+export function SideBarItem({ children, href }: SideBarItemProps) {
   return (
-    <Button variant={"ghost"} size={"sm"} className="w-full justify-start mt-4">
-      {children}
+    <Button
+      variant={"ghost"}
+      size={"sm"}
+      className="w-full justify-start mt-4"
+      asChild
+    >
+      <Link href={href}>{children}</Link>
     </Button>
   );
 }
